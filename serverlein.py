@@ -18,8 +18,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             while True:
                 data = conn.recv(1024) 
                 if not data: break
-                outdata = data[::-1]      #reverse data: hello->olleh
-                print('Hi BULME')
-                conn.sendall(outdata)
+                outdata = "GET / HTTP/1.1\r\nHost: localhost\r\n\r\n"
+                antwort = "HTTP/1.1 200 OK\r\n\r\n<html><body><h1>Hi BULME</h1></body></html>" #reverse data: hello->olleh
+                
+                conn.sendall(antwort)
                 
                 conn.close()
